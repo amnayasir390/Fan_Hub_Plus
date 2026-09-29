@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Feedback;
+use Illuminate\Http\Request;
+
+class FeedbackController extends Controller
+{
+    public function create()
+    {
+        return view('feedback.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'    => ['required', 'string', 'max:255'],
+            'email'   => ['required', 'email', 'max:255'],
+            'type'    => ['required', 'in:bug,suggestion,query'],
+            'subject' => ['required', 'string', 'max:255'],
+            'message' => ['required', 'string', 'min:10', 'max:2000'],
+        ]);
+
+        Feedback::create([
+            'user_id' => auth()->id(),
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'type'    => $request->type,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+
+        return redirect()->route('feedback.create')->with('success', 'Thank you for your feedback! We\'ll review it shortly.');
+    }
+}
