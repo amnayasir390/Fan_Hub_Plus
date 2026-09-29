@@ -107,3 +107,4 @@ setup.ps1                 # One-click setup script
 ## Fandom Categories
 
 🎌 Anime · 🎮 Gaming · 🎬 Movies · 📺 TV Shows · 🎤 K-Pop · 💥 Comics · 📖 Manga · 🎭 Cosplay
+# Fan_Hub_Plus
